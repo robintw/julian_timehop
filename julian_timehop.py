@@ -21,9 +21,8 @@ def read_table_from_doc(filename):
 
 def get_formatted_message(df):
     today = datetime.datetime.now() - datetime.timedelta(2)
-    today = today.strftime('%Y-%m-%d')
     
-    subdf = df[today]
+    subdf = df[(df.index.month == today.month) & (df.index.day == today.day)]
     
     if len(subdf) == 0:
         return
